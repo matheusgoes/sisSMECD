@@ -111,75 +111,36 @@ return [
         'NAVEGAÇÃO PRINCIPAL',
         [
             'text' => 'Início',
-            'url' => '/',
-            'target' => '_blank'
+            'url' => '/home',
         ],
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text' => 'Cadastrar',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Alterar Senha',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'text'    => 'Alunos',
+            'ícon'    => 'user',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Alunos',
+                    'url'  => '/alunos',
                 ],
                 [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text'    => 'Cadastrar',
+                    'url'     => '/alunos/cadastrar',
                 ],
             ],
         ],
-        // 'LABELS',
-        // [
-        //     'text'       => 'Important',
-        //     'icon_color' => 'red',
-        // ],
-        // [
-        //     'text'       => 'Warning',
-        //     'icon_color' => 'yellow',
-        // ],
-        // [
-        //     'text'       => 'Information',
-        //     'icon_color' => 'aqua',
-        // ],
+        [
+            'text'    => 'Acompanhantes',
+            'ícon'    => 'users',
+            'submenu' => [
+                [
+                    'text' => 'Acompanhantes',
+                    'url'  => '/acompanhantes',
+                ],
+                [
+                    'text'    => 'Cadastrar',
+                    'url'     => '/acompanhantes/cadastrar',
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -215,7 +176,6 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'chartjs'    => true
     ],
 ];

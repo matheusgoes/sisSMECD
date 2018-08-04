@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Quotation;
+use View;
+use Datatables;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //current user name
+        $username = \Auth::user()->name;
+
+        //usuários cadastrados
+        $alunos = DB::table('alunos')->get();
+        $acompanhantes = DB::table('acompanhantes')->get();
+
+        return view('home', [
+                "nome" => $username,
+                "alunos" => $alunos,
+                "acompanhantes" => $acompanhantes
+        ]);
     }
 }
