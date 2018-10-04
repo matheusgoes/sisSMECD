@@ -11,44 +11,57 @@
     <h4>Por favor preencha o formulário abaixo:</h4>
 
     <form class="form" action="{{ URL::to('/alunos/cadastrar') }}" method="post" enctype="multipart/form-data">
-        <label for="nome">Nome</label>
-        <input  type="text" name="nome" placeholder="nome"><br>
-
-        <label for="serie">Série</label>
-        <input  type="text" name="serie" placeholder="serie"><br>
-
-        <label for="escola">Escola</label>
-        <input  type="text" name=escola placeholder="escola"><br>
-
-        <label for="turno" >Turno</label>
-        <input  type="text" name=turno placeholder="Turno"><br>
-
-        <label for="documento">Documento</label>
-        <input  type="text" name=documento placeholder="documento"><br>
-
-        <label for="residencia">Reside em</label>
-        <input  type="text" name=residencia placeholder="Reside em"><br>
-
-        <label for="rota">Rota</label>
-        <input  type="text" name=rota placeholder="rota"><br>
-
-        <label for="data_nasc">Data de Nascimento</label>
-        <input  type="text" name=data_nasc placeholder="Data de Nascimnento"><br><br>
-
-        <label for="mae">Mãe</label>
-        <input  type="text" name=mae placeholder="Mãe"><br>
-
-        <label for="pai">Pai</label>
-        <input  type="text" name=pai placeholder="Pai"><br>
-
-        <label for="photo">Foto</label>
-        <input type="file" name="photo" id="photo">
-
-        {{ csrf_field() }}
-
-        <br>
-
-        <input type="submit" value="Registrar!">
+      {{ csrf_field() }}
+        <table>
+          <tr>
+            <td><label for="nome">Nome</label></td>
+            <td><input class="form-control-plaintext col-md-12"  type="text" name="nome" placeholder="nome"></td>
+          </tr>
+          <tr>
+              <td><label for="serie">Série</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name="serie" placeholder="serie"></td>
+          </tr>
+          <tr>
+              <td><label for="escola">Escola</label></td>
+              <td><input  class="form-control-plaintext col-md-12" type="text" name=escola placeholder="escola"></td>
+          </tr>
+          <tr>
+              <td><label for="turno" >Turno</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=turno placeholder="Turno"></td>
+          </tr>
+          <tr>
+              <td><label for="documento">Documento</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=documento placeholder="documento"></td>
+          </tr>
+          <tr>
+              <td><label for="residencia">Reside em</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=residencia placeholder="Reside em"></td>
+          </tr>
+          <tr>
+              <td><label for="rota">Rota</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=rota placeholder="rota"></td>
+          </tr>
+          <tr>
+              <td><label for="data_nasc">Data de Nascimento</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=data_nasc placeholder="Data de Nascimnento"></td>
+          </tr>
+          <tr>
+              <td><label for="mae">Mãe</label></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=mae placeholder="Mãe"></td>
+          </tr>
+          <tr>
+              <td><label for="pai">Pai</label></td>
+              <td><input class="form-control-plaintext col-md-12" type="text" name=pai placeholder="Pai"></td>
+          </tr>
+          <tr>
+              <td><label for="photo">Foto</label></td>
+              <td><input type="file" name="photo" id="photo"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td> <center> <input class="btn btn-primary mb-2" type="submit" value="Registrar!"> </center></td>
+          </tr>
+        </table>
     </form>
   </div>
   @stop
