@@ -10,20 +10,20 @@
   <div class="box" style="padding: 10px;">
     <h4>Por favor preencha o formulário abaixo:</h4>
 
-    <form class="form" action="{{ URL::to('/alunos/cadastrar') }}" method="post" enctype="multipart/form-data">
+    <form name="submit_form" class="form" action="{{ URL::to('/alunos/cadastrar') }}" onsubmit="return validateForm()"  method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
         <table>
           <tr>
             <td><label for="nome">Nome</label></td>
-            <td><input class="form-control-plaintext col-md-12"  type="text" name="nome" placeholder="nome"></td>
+            <td><input class="form-control-plaintext col-md-12"  type="text" name="nome" placeholder="Nome (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="serie">Série</label></td>
-              <td><input class="form-control-plaintext col-md-12"  type="text" name="serie" placeholder="serie"></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name="serie" placeholder="Serie (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="escola">Escola</label></td>
-              <td><input  class="form-control-plaintext col-md-12" type="text" name=escola placeholder="escola"></td>
+              <td><input  class="form-control-plaintext col-md-12" type="text" name=escola placeholder="Escola (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="turno" >Turno</label></td>
@@ -31,7 +31,7 @@
           </tr>
           <tr>
               <td><label for="documento">Documento</label></td>
-              <td><input class="form-control-plaintext col-md-12"  type="text" name=documento placeholder="documento"></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=documento placeholder="Documento (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="residencia">Reside em</label></td>
@@ -39,15 +39,15 @@
           </tr>
           <tr>
               <td><label for="rota">Rota</label></td>
-              <td><input class="form-control-plaintext col-md-12"  type="text" name=rota placeholder="rota"></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=rota placeholder="Rota"></td>
           </tr>
           <tr>
               <td><label for="data_nasc">Data de Nascimento</label></td>
-              <td><input class="form-control-plaintext col-md-12"  type="text" name=data_nasc placeholder="Data de Nascimnento"></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=data_nasc placeholder="Data de Nascimnento (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="mae">Mãe</label></td>
-              <td><input class="form-control-plaintext col-md-12"  type="text" name=mae placeholder="Mãe"></td>
+              <td><input class="form-control-plaintext col-md-12"  type="text" name=mae placeholder="Mãe (Obrigatório)"></td>
           </tr>
           <tr>
               <td><label for="pai">Pai</label></td>
@@ -64,4 +64,20 @@
         </table>
     </form>
   </div>
+
+  <script>
+    function validateForm() {
+        var nome = document.forms["submit_form"]["nome"].value;
+        var serie = document.forms["submit_form"]["serie"].value;
+        var escola = document.forms["submit_form"]["escola"].value;
+        var documento = document.forms["submit_form"]["documento"].value;
+        var data_nasc = document.forms["submit_form"]["data_nasc"].value;
+        var mae = document.forms["submit_form"]["mae"].value;
+
+        if (nome == "" || documento =="" || serie =="" || escola == "" || mae == "" || data_nasc == "" ) {
+            alert("Os campos nome, serie, escola, documento, data de nascimento, e nome da mãe são de preenchimento OBRIGATÓRIO !!!");
+            return false;
+        }
+    }
+  </script>
   @stop

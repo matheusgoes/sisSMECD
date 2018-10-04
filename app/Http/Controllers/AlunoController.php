@@ -8,6 +8,7 @@ use Datatables;
 use View;
 use PDF;
 use DB;
+use Validator;
 
 class AlunoController extends Controller
 {
@@ -53,7 +54,7 @@ class AlunoController extends Controller
             $filename = $request->input('documento').".".$file->getClientOriginalExtension();
             $file->move(public_path('img/fotos/alunos/'), $filename);
         }else{
-            echo "É necessário que uma imagem seja enviada.";
+            $filename = $request->input('documento').".jpg";
         }
 
         $aluno = new aluno;
@@ -63,15 +64,15 @@ class AlunoController extends Controller
             'data_nasc'   =>  $request->input('data_nasc'),
             'escola'      =>  $request->input('escola'),
             'serie'       =>  $request->input('serie'),
-            'turno'       =>  $request->input('turno'),
-            'rota'        =>  $request->input('rota'),
-            'residencia'  =>  $request->input('residencia'),
+            'turno'       =>  ($request->input('turno') == "" ? "-----" : $request->input('turno')),
+            'rota'        =>  ($request->input('rota') == "" ? "-----" : $request->input('rota')),
+            'residencia'  =>  ($request->input('residencia') == "" ? "-----" : $request->input('residencia')),
             'foto'        =>  $filename,
-            'pai'         =>  $request->input('pai'),
+            'pai'         =>  ($request->input('pai') == "" ? "-----" : $request->input('pai')),
             'mae'         =>  $request->input('mae')
         ]);
 
-        return redirect('/');
+        return redirect('/alunos/cadastrar');
     }
 
     public function generatePDF(){
