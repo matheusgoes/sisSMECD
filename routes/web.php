@@ -18,6 +18,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tonners', 'TonnerController@index')->name('tonners');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/acompanhantes/cadastrar', 'AcompanhanteController@cadastrar')->name('acompanhante.cadastrar');

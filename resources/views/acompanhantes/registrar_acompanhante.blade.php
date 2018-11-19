@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td><label for="turno"  class="col-sm-2 col-form-label">Turno</label></td>
-            <td><input class="form-control-plaintext col-md-12" type="text" name=turno placeholder="Rurno"></td>
+            <td><input class="form-control-plaintext col-md-12" type="text" name=turno placeholder="Turno"></td>
           </tr>
           <tr>
             <td><label for="photo" class="col-sm-2 col-form-label">Foto</label></td>

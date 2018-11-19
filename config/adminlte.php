@@ -110,37 +110,28 @@ return [
     'menu' => [
         'NAVEGAÇÃO PRINCIPAL',
         [
-            'text' => 'Início',
+            'text' => 'Transporte Escolar',
             'url' => '/home',
-        ],
-        [
-            'text'    => 'Alunos',
-            'ícon'    => 'user',
             'submenu' => [
-                [
-                    'text' => 'Alunos',
-                    'url'  => '/alunos',
-                ],
-                [
-                    'text'    => 'Cadastrar',
-                    'url'     => '/alunos/cadastrar',
-                ],
+              [
+                'text'    => 'Início',
+                'url'  => '/home',
+              ],
+              [
+                  'text'    => 'Alunos',
+                  'url'  => '/alunos',
+              ],
+              [
+                  'text'    => 'Acompanhantes',
+                  'url'  => '/acompanhantes',
+              ],
             ],
         ],
         [
-            'text'    => 'Acompanhantes',
-            'ícon'    => 'users',
-            'submenu' => [
-                [
-                    'text' => 'Acompanhantes',
-                    'url'  => '/acompanhantes',
-                ],
-                [
-                    'text'    => 'Cadastrar',
-                    'url'     => '/acompanhantes/cadastrar',
-                ],
-            ],
+            'text' => 'Tonners',
+            'url' => '/tonners',
         ],
+
     ],
 
     /*

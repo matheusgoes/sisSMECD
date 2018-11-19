@@ -7,9 +7,12 @@
 
 @section('content')
 <div class="box" style="padding: 10px;">
-  <h1>Acompanhantes Cadastrados
-    <a style="float: right;" class="btn btn-info" role="button" href="{{action('AcompanhanteController@generatePDF')}}">Imprimir</a>
-  </h1>
+  <h4>
+    Acompanhantes Cadastrados
+    <a style="float: right; margin-left: 10px;" class="btn btn-info" role="button" href="{{action('AcompanhanteController@generatePDF')}}">Imprimir</a>
+    <a style="float: right;" class="btn btn-danger" role="button" href="/acompanhantes/cadastrar">Cadastrar</a>
+  </h4>
+  <br>
 
   <table class="table table-bordered table-hover dataTable" id="acompanhantes-table">
   <thead>
