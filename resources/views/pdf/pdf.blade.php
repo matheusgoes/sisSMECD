@@ -113,7 +113,7 @@
                             </td>
                             <td width="20%" style="text-align: right; padding-left: 40px; padding-top: -5px;">
                                 <p>Válido até</p>
-                                <h4>DEZ/2018</h4>
+                                <h4>DEZ/2019</h4>
                             </td>
                         </tr>
                     </table>

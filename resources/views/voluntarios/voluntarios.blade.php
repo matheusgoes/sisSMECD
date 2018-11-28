@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Acompanhantes')
+@section('title', 'Voluntarios')
 
 @section('content_header')
 @stop
@@ -8,20 +8,19 @@
 @section('content')
 <div class="box" style="padding: 10px;">
   <h4>
-    Acompanhantes Cadastrados
+    Voluntarios Cadastrados
     <a style="float: right; margin-left: 10px;" class="btn btn-primary" role="button" onclick="print()">Imprimir</a>
-    <a style="float: right;" class="btn btn-info" role="button" href="/acompanhantes/cadastrar">Cadastrar</a>
+    <a style="float: right;" class="btn btn-info" role="button" href="/voluntarios/cadastrar">Cadastrar</a>
   </h4>
   <br>
 
-  <table class="table table-bordered table-hover dataTable" id="acompanhantes-table">
+  <table class="table table-bordered table-hover dataTable" id="voluntarios-table">
     <thead>
       <tr>
-        <th>Selecionar</th>
+        <th>X</th>
         <th>Foto</th>
         <th>Nome</th>
         <th>Documento</th>
-        <th>Aluno</th>
         <th>Rota</th>
         <th>Turno</th>
         <th>Reside em</th>
@@ -30,11 +29,10 @@
     </thead>
     <tfoot>
       <tr>
-        <th>Selecionar</th>
+        <th>X</th>
         <th>Foto</th>
         <th>Nome</th>
         <th>Documento</th>
-        <th>Aluno</th>
         <th>Turno</th>
         <th>Rota</th>
         <th>Reside em</th>
@@ -54,38 +52,37 @@ function print(){
   }).get();
   var args = ids.join("-");
   if (args=="") {
-    window.location="/acompanhantes/pdf/";
+    window.location="/voluntarios/pdf/";
   }else{
-    window.location="/acompanhantes/pdf2/"+ args;
+    window.location="/voluntarios/pdf2/"+ args;
   }
 }
 
 $(function () {
 
-  $('#acompanhantes-table').DataTable({
+  $('#voluntarios-table').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "{{action('AcompanhanteController@load') }}",
+    "ajax": "{{action('VoluntariosController@load') }}",
     columns: [
       {
         "render": function (data, type, JsonResultRow, meta) {
-          return ' <input type="checkbox" name="'+JsonResultRow.foto+'" value="'+JsonResultRow.foto+'"><br>';
+          return ' <input type="checkbox" name="'+JsonResultRow.id+'" value="'+JsonResultRow.id+'"><br>';
         }
       },
       {
         "render": function (data, type, JsonResultRow, meta) {
-          return '<image img src="/img/fotos/acompanhantes/'+JsonResultRow.foto+'" alt="foto" height="60px" width="60px"></image>';
+          return '<image img src="/img/fotos/voluntarios/'+JsonResultRow.foto+'" alt="foto" height="60px" width="60px"></image>';
         }
       },
       { data: 'nome', name: 'nome' },
       { data: 'doc', name: 'doc' },
-      { data: 'aluno', name: 'aluno' },
       { data: 'rota', name: 'rota' },
       { data: 'turno', name: 'turno' },
       { data: 'residencia', name: 'residencia' },
       {
         "render": function (data, type, JsonResultRow, meta) {
-          return '<a class="btn btn-default" role="button" href="/acompanhantes/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/acompanhantes/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
+          return '<a class="btn btn-default" role="button" href="/voluntarios/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a><a class="btn btn-danger" role="button" href="/voluntarios/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
         }
       }
     ]

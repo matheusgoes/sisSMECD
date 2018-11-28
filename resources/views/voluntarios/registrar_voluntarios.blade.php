@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Acompanhante')
+@section('title', 'Cadastrar Voluntário')
 
 @section('content_header')
-    <h1>Cadastrar Acompanhante</h1>
+    <h1>Cadastrar Voluntário</h1>
 @stop
 
 @section('content')
@@ -11,24 +11,20 @@
   <div class="box" style="padding: 10px;">
     <h4>Por favor preencha o formulário abaixo:</h4>
     <div id="erro"></div>
-    <form name="submit_form" class="form" action="{{ URL::to('/acompanhantes/cadastrar') }}" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
+    <form name="submit_form" class="form" action="{{ URL::to('/voluntarios/cadastrar') }}" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
 
       {{ csrf_field() }}
         <table>
           <tr>
-            <td><label for="nome"  class="col-sm-2 col-form-label">Nome*</label></td>
+            <td><label for="nome"  class="col-sm-2 col-form-label">Nome * </label></td>
             <td><input class="form-control-plaintext col-md-12" type="text" name="nome" placeholder="Nome (Obrigatório)"></td>
           </tr>
           <tr>
-            <td><label for="documento"  class="col-sm-2 col-form-label">Documento*</label></td>
+            <td><label for="documento"  class="col-sm-2 col-form-label">Documento *</label></td>
             <td><input class="form-control-plaintext col-md-12" type="text" name=documento placeholder="Documento (Obrigatório)"></td>
           </tr>
           <tr>
-            <td><label for="aluno"  class="col-sm-2 col-form-label">Aluno*</label></td>
-            <td><input class="form-control-plaintext col-md-12" type="text" name="aluno" placeholder="Aluno (Obrigatório)"></td>
-          </tr>
-          <tr>
-            <td><label for="residencia"  class="col-sm-2 col-form-label">Residencia*</label></td>
+            <td><label for="residencia"  class="col-sm-2 col-form-label">Residência *</label></td>
             <td><input class="form-control-plaintext col-md-12" type="text" name=residencia placeholder="Residencia (Obrigatório)"></td>
           </tr>
           <tr>
@@ -55,11 +51,10 @@
     function validateForm() {
         var nome = document.forms["submit_form"]["nome"].value;
         var documento = document.forms["submit_form"]["documento"].value;
-        var aluno = document.forms["submit_form"]["aluno"].value;
         var residencia = document.forms["submit_form"]["residencia"].value;
 
-        if (nome == "" || documento =="" || aluno =="" || residencia == "") {
-            alert("Os campos nome, documento, aluno e residencia são de preenchimento OBRIGATÓRIO !!!");
+        if (nome == "" || documento =="" || residencia == "") {
+            alert("Os campos nome, documento e residencia são de preenchimento OBRIGATÓRIO !!!");
             document.getElementById('erro').innerHTML =   '<p style="background-color: lightgrey: ; border-left: 6px solid red; padding:2px;">Preencha os campos obrigatórios. Os campos obrigatórios possuem um * ao lado do nome.</p>';
             return false;
         }

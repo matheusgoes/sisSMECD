@@ -28,7 +28,7 @@ body{
 }
 
 .header{
-    background: lightyellow;
+    background: indianred;
     height: 40px;
     text-align: center;
     padding: 3px 0px 0px 0px;
@@ -39,7 +39,7 @@ body{
 .footer{
     padding: 10px 0px 0px 0px;
     text-align: center;
-    background: lightyellow;
+    background: indianred;
     height: 25px;
     vertical-align : bottom;
     display: block;
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 </style>
-@foreach ($acompanhantes as $acompanhante)
+@foreach ($voluntarios as $voluntario)
 
 <div class="carteira">
     <div class="left" style="float: left;">
@@ -69,17 +69,14 @@ h1, h2, h3, h4, h5, h6, p{
                 <div class="body">
                     <table style="padding-left: 10px;">
                         <tr>
-                            <td><b>Acompanha: </b> {{$acompanhante->aluno}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Nº do Documento</b>: {{$acompanhante->doc}}</td>
+                            <td><b>Nº do Documento</b>: {{$voluntario->doc}}</td>
                         </tr>
                     </table>
 
                 </div>
 
                 <div class="footer">
-                    <h4>TRANSPORTE ESCOLAR – ACOMPANHANTE</h4>
+                    <h4>TRANSPORTE ESCOLAR – voluntario</h4>
                 </div>
             </div>
 
@@ -105,18 +102,15 @@ h1, h2, h3, h4, h5, h6, p{
                         <tr>
                             <td>
                                 <div style="width: 70px; height: 80px; border-style: solid; border-width: 1px;">
-                                    <img  src="{{ public_path('img/fotos/acompanhantes/') }}{{$acompanhante->foto}}" alt="foto" height="80" width="70">
+                                    <img  src="{{ public_path('img/fotos/voluntarios/') }}{{$voluntario->foto}}" alt="foto" height="80" width="70">
                                 </div>
                             </td>
                             <td width="100%">
                                 <table style="margin-top: 0px;">
                                     <tr style="margin-top: 0px;">
                                         <td style="width: 100%">
-                                            <b>Nome: </b> {{$acompanhante->nome}}
+                                            <b>Nome: </b> {{$voluntario->nome}}
                                         </td>
-                                    </tr>
-                                    <tr style="margin-top: 5px;">
-                                        <td style="width: 100%"><b>Acompanha: </b>{{$acompanhante->aluno}}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -125,13 +119,13 @@ h1, h2, h3, h4, h5, h6, p{
 
                     <table width="100%;">
                             <tr>
-                                <td style="width: 30%; text-align: center;"> <h4> <b>Rota:</b> {{$acompanhante->rota}}</h4></td>
-                                <td style="width: 30%; text-align: center;"><b>Turno:</b> {{$acompanhante->turno}}</td>
+                                <td style="width: 30%; text-align: center;"> <h4> <b>Rota:</b> {{$voluntario->rota}}</h4></td>
+                                <td style="width: 30%; text-align: center;"><b>Turno:</b> {{$voluntario->turno}}</td>
                             </tr>
                     </table>
                 </div>
                 <div class="footer">
-                    <h3>{{$acompanhante->residencia}}</h3>
+                    <h3>{{$voluntario->residencia}}</h3>
                 </div>
             </div>
         </div>

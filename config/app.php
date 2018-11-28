@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ID Escolar'),
+    'name' => env('APP_NAME', 'SISTEMAS SMECD'),
 
     /*
     |--------------------------------------------------------------------------

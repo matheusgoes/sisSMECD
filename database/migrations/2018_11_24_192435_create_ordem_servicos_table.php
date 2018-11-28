@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTonnersTable extends Migration
+class CreateOrdemServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateTonnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tonners', function (Blueprint $table) {
+        Schema::create('ordem_servicos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('modelo');
-            $table->string('escola');
+            $table->string('status');
             $table->integer('quantidade');
+            $table->string('tonners_enviados');
+            $table->string('tonners_recebidos');
+            $table->string('tonners_entregues');
+            $table->string('data_envio');
+            $table->string('data_entrega');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateTonnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tonners');
+        Schema::dropIfExists('ordem_servicos');
     }
 }

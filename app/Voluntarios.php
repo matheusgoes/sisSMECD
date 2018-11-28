@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tonner extends Model
+class Voluntarios extends Model
 {
   protected $fillable = [
-      'modelo', 'escola', 'quantidade'
+      'nome', 'doc', 'rota', 'foto', 'residencia', 'turno'
   ];
 }

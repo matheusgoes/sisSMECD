@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'ID ESCOLAR',
+    'title' => 'SISTEMAS SMECD',
 
-    'title_prefix' => 'ID ESC :: ',
+    'title_prefix' => 'SisSMECD:: ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>ID</b>Escolar',
+    'logo' => '<b>Sistemas</b>SMECD',
 
-    'logo_mini' => '<b>ID</b>E',
+    'logo_mini' => '<b>Sis</b>SMECD',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,6 +125,10 @@ return [
                   'text'    => 'Acompanhantes',
                   'url'  => '/acompanhantes',
               ],
+              [
+                  'text'    => 'Voluntários',
+                  'url'  => '/voluntarios',
+              ],
             ],
         ],
         [
@@ -167,6 +171,8 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'chartjs'    => true
+        'chartjs'    => true,
+        'select2'    => true,
+        'datepicker' => true
     ],
 ];

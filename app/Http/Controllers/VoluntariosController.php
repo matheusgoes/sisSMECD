@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\acompanhante;
+use App\Voluntarios;
 use App\Quotation;
 use Datatables;
 use View;
@@ -11,8 +11,7 @@ use PDF;
 use DB;
 
 
-
-class AcompanhanteController extends Controller
+class VoluntariosController extends Controller
 {
   /**
      * Create a new controller instance.
@@ -31,22 +30,22 @@ class AcompanhanteController extends Controller
      */
     public function show()
     {
-        $acompanhantes = DB::table('acompanhantes')->get();
+        $voluntarios = DB::table('voluntarios')->get();
 
-        // return view('acompanhantes.acompanhantes', [
-        //         "acompanhantes" => $acompanhantes
+        // return view('voluntarios.voluntarios', [
+        //         "voluntarios" => $voluntarios
         // ]);
         //
-        return view('acompanhantes.acompanhantes');
+        return view('voluntarios.voluntarios');
     }
 
     public function load(){
-        return datatables()->of(DB::table('acompanhantes'))->toJson();
+        return datatables()->of(DB::table('voluntarios'))->toJson();
     }
 
     public function cadastrar()
     {
-        return view('acompanhantes.registrar_acompanhante');
+        return view('voluntarios.registrar_voluntarios');
     }
 
     public function save_submit(Request $request)
@@ -56,37 +55,36 @@ class AcompanhanteController extends Controller
       if ($request->hasFile('photo')) {
           $file = $request->photo;
           $filename = $request->input('documento').".".$file->getClientOriginalExtension();
-          $file->move(public_path('img/fotos/acompanhantes/'), $filename);
+          $file->move(public_path('img/fotos/voluntarios/'), $filename);
       }else{
           $filename = $request->input('documento').".jpg";
       }
 
-        $acompanhante = new acompanhante;
+        $voluntario = new Voluntarios;
 
-        $acompanhante::create([
+        $voluntario::create([
             'nome'          =>  $request->input('nome'),
             'doc'           =>  $request->input('documento'),
-            'aluno'         =>  $request->input('aluno'),
             'rota'          =>  ($request->input('rota') == "" ? "-----" : $request->input('rota')),
             'foto'          =>  $filename,
             'residencia'    =>  $request->input('residencia'),
             'turno'         =>  ($request->input('turno') == "" ? "-----" : $request->input('turno')),
         ]);
 
-        return redirect('/acompanhantes/cadastrar')->with('message','Cadastrado com sucesso!');
-    }
-
-    public function delete($id){
-      DB::table('acompanhantes')->where('id',$id)->delete();
-      return redirect('/acompanhantes');
+        return redirect('/voluntarios/cadastrar')->with('message','Cadastrado com sucesso!');
     }
 
     public function editar($id)
     {
-        $acompanhantes = DB::table('acompanhantes')->where('id', $id)->get();
-        return view('acompanhantes.editar_acompanhante', [
-                "acompanhante" => $acompanhantes[0]
+        $voluntarios = DB::table('voluntarios')->where('id', $id)->get();
+        return view('voluntarios.editar_voluntario', [
+                "voluntario" => $voluntarios[0]
         ]);
+    }
+
+    public function delete($id){
+      DB::table('voluntarios')->where('id',$id)->delete();
+      return redirect('/voluntarios');
     }
 
     public function edit_submit(Request $request, $id)
@@ -95,42 +93,41 @@ class AcompanhanteController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->photo;
             $filename = $request->input('documento').".".$file->getClientOriginalExtension();
-            $file->move(public_path('img/fotos/acompanhantes/'), $filename);
+            $file->move(public_path('img/fotos/voluntarios/'), $filename);
         }else{
             $filename = $request->input('documento').".jpg";
         }
 
-        DB::table('acompanhantes')
+        DB::table('voluntarios')
               ->where('id', $id)
               ->update([
                   'nome'          =>  $request->input('nome'),
                   'doc'           =>  $request->input('documento'),
-                  'aluno'         =>  $request->input('aluno'),
                   'rota'          =>  ($request->input('rota') == "" ? "-----" : $request->input('rota')),
                   'foto'          =>  $filename,
                   'residencia'    =>  $request->input('residencia'),
                   'turno'         =>  ($request->input('turno') == "" ? "-----" : $request->input('turno')),
               ]);
-        return redirect('/acompanhantes');
+        return redirect('/voluntarios');
     }
 
     public function generatePDF(){
-        $acompanhantes = DB::table('acompanhantes')->get();
+        $voluntarios = DB::table('voluntarios')->get();
 
-        $pdf = PDF::loadView('pdf.pdfAcompanhantes',  [
-               "acompanhantes" => $acompanhantes
+        $pdf = PDF::loadView('pdf.pdfVoluntarios',  [
+               "voluntarios" => $voluntarios
         ]);
 
-        return $pdf->download('acompanhantes.pdf');
+        return $pdf->download('voluntarios.pdf');
     }
 
     public function generatePDF2(Request $request, $ids){
-           $id_array = explode("-", $ids);
-           $acompanhantes = DB::table('acompanhantes')->whereIn('id', $id_array)->get();
+         $id_array = explode("-", $ids);
+         $voluntarios = DB::table('voluntarios')->whereIn('id', $id_array)->get();
+         $pdf = PDF::loadView('pdf.pdfVoluntarios',  [
+                "voluntarios" => $voluntarios
+         ]);
 
-           $pdf = PDF::loadView('pdf.pdfAcompanhantes',  [
-                  "acompanhantes" => $acompanhantes
-           ]);
-          return $pdf->download('acompanhantes.pdf');
-      }
+         return $pdf->download('voluntarios.pdf');
+    }
 }
