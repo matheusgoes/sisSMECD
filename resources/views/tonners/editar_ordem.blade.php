@@ -106,6 +106,10 @@
             <td><input  class="form-control-plaintext col-xs-3" type="text" name=quantidade placeholder="Quantidade de tonners (Obrigatório)" value="{{ $ordem->quantidade }}"></td>
          </tr>
          <tr>
+            <td><label for="obs">Observações *</label></td>
+            <td><input  class="form-control-plaintext col-xs-3" type="text" name=obs placeholder="Quantidade de tonners (Obrigatório)" value="{{ $ordem->obs }}"></td>
+         </tr>
+         <tr>
          <td> <br> </td>
          </tr>
          <tr>
@@ -137,11 +141,12 @@ function validateForm() {
    var enviados = document.forms["submit_form"]["enviados[]"].value;
    var data_envio = document.forms["submit_form"]["data-envio"].value;
    var quantidade = document.forms["submit_form"]["quantidade"].value;
+   var obs = document.forms["submit_form"]["obs"].value;
    // $('#enviados option:selected').each(function() {
    //     alert($(this).val());
    // });
    console.log(enviados.length);
-   if (enviados == "" || data_envio == "" || quantidade == "") {
+   if (enviados == "" || data_envio == "" || quantidade == "" || obs == "") {
       alert("Os campos Modelos Enviados, Quantidade e Data de envio são de preenchimento OBRIGATÓRIO !!!");
       document.getElementById('erro').innerHTML =   '<p style="background-color: lightgrey: ; border-left: 6px solid red; padding:2px;">Preencha os campos obrigatórios. Os campos obrigatórios possuem um * ao lado do nome.</p>';
       return false;

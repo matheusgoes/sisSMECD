@@ -16,12 +16,13 @@ class CreateOrdemServicosTable extends Migration
         Schema::create('ordem_servicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
-            $table->integer('quantidade');
             $table->string('tonners_enviados');
             $table->string('tonners_recebidos');
             $table->string('tonners_entregues');
             $table->string('data_envio');
             $table->string('data_entrega');
+            $table->string('obs');
+            $table->string('qtd');
             $table->timestamps();
         });
     }

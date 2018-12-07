@@ -66,5 +66,7 @@ Route::get('/ordens/delete/{id}', 'OrdemServicoController@delete')->name('Ordem.
 Route::get('/ordens/editar/{id}', 'OrdemServicoController@editar')->name('Ordem.editar');
 Route::post('/ordens/editar/{id}', 'OrdemServicoController@edit_submit')->name('Ordem.editar');
 Route::get('/ordens/load', 'OrdemServicoController@load')->name('Ordem.load');
+Route::get('/ordens/load/tonners', 'OrdemServicoController@load_tonners')->name('Ordem.load_tonners');
+Route::get('/ordens/cadastrar_load', 'OrdemServicoController@cadastrar_load')->name('Ordem.cadastrar_load');
 //Route::get('/ordens/pdf', 'OrdensController@generatePDF')->name('Ordem.pdf');
 //Route::get('/ordens/pdf2', 'OrdensController@generatePDF2')->name('Ordem.pdf');

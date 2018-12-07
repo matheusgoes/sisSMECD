@@ -41,6 +41,14 @@ class OrdemServicoController extends Controller
       return datatables()->of(DB::table('ordem_servicos'))->toJson();
   }
 
+  public function load_tonners(){
+      return datatables()->of(DB::table('tonners'))->toJson();
+  }
+
+  public function cadastrar_load(){
+      return datatables()->of(DB::table('ordem_servicos'))->toJson();
+  }
+
   public function cadastrar()
   {
       $tonners = DB::table('tonners')->get();
@@ -51,22 +59,27 @@ class OrdemServicoController extends Controller
   public function save_submit(Request $request)
   {
       $enviados = "";
-      $multipleValues = $request->post('enviados');
-      $i = 0;
-      foreach($multipleValues as $value)
-      {
-          ($i == 0 ? $enviados = $value: $enviados .= "," . $value);
-          $i++;
+      $qtds = "";
+      $ids_selected = $request->post('ids_selected');
+      $ids = $request->post('ids');
+      $qtd = $request->post('qtd');
+      for ($i=0; $i < sizeOf($ids); $i++) {
+          if ($qtd[$i] != null && $qtd[$i] != "0" ) {
+              ($i == 0 ? $enviados = $ids[$i] : $enviados .= "," . $ids[$i]);
+              ($i == 0 ? $qtds     = $qtd[$i] : $qtds     .= "," . $qtd[$i]);
+          }
       }
+
       $ordem = new ordem_servico;
       $ordem::create([
           'status'             =>  "Enviado",
-          'quantidade'         =>  $request->input('quantidade'),
           'tonners_enviados'   =>  $enviados,
+          'qtd'       =>  $qtds,
           'tonners_recebidos'  =>  0,
           'tonners_entregues'  =>  0,
           'data_envio'         =>  $request->input('data_envio'),
           'data_entrega'       =>  "",
+          'obs'       =>  $request->input('obs'),
         ]);
       return redirect('/ordens/cadastrar');
   }
@@ -85,7 +98,9 @@ class OrdemServicoController extends Controller
     return view('tonners.editar_ordem', [
                   "tonners" => $tonners,
                   "ordem" => $ordem,
-                  "enviados" => $tonners_enviados
+                  "enviados" => $tonners_enviados,
+                  'obs'       =>  $obs,
+                  'qtd'       =>  $qtd
    ]);
   }
 
@@ -95,12 +110,13 @@ class OrdemServicoController extends Controller
             ->where('id', $id)
             ->update([
               'status'         =>  $request->input('status'),
-              'quantidade'      => $request->input('quantidade'),
               'ordens_enviados'   =>  $request->input('ordens_enviados'),
               'ordens_recebidos'      =>  $request->input('ordens_recebidos'),
               'ordens_entregues'       =>  $request->input('ordens_entregues'),
               'data_envio'       =>  $request->input('data_envio'),
               'data_entrega'       =>  $request->input('data_entrega'),
+              'obs'       =>  $request->input('obs'),
+              'qtd'       =>  $request->input('qtd'),
             ]);
       return redirect('/ordens');
   }

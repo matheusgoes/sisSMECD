@@ -21,14 +21,15 @@
         <td><label for="enviados">Modelos enviados * </label></td>
         <td>
           <div class="form-group">
-            <select name="enviados[]" id="enviados" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Selecionar tonners" style="width: 100%;" tabindex="-1" aria-hidden="true">
-              @foreach($tonners as $tonner)
-              <option value="{{$tonner->id }}"}}>
-                {{ $tonner->escola }} – {{ $tonner->modelo }}
-              </option>
-              @endforeach
-
-            </select>
+            <table class="table table-bordered table-hover dataTable" id="tonners-table">
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Escola</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            </table>
           </div>
         </td>
       </tr>
@@ -48,9 +49,9 @@
         <td> <br> </td>
       </tr>
       <tr>
-        <td><label for="quantidade">Quantidade de tonners *</label></td>
-        <td><input  class="form-control-plaintext col-md-6" type="text" name=quantidade placeholder="Quantidade de tonners (Obrigatório)"></td>
-      </tr>
+            <td><label for="obs">Observações</label></td>
+            <td><input  class="form-control-plaintext col-xs-12" type="text" name=obs placeholder="Observações"></td>
+         </tr>
       <tr>
         <td> <br> </td>
       </tr>
@@ -63,23 +64,34 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
-$(document).ready(function(){
-  $('#enviados').select2({
-    tags: true,
-    tokenSeparators: [',', ' ']
-  })
+
+$(function () {
+  $('#tonners-table').DataTable({
+    "processing": true,
+      "serverSide": true,
+      "ajax": "/tonners/load",
+      columns: [
+      { data: 'modelo', name: 'modelo' },
+      { data: 'escola', name: 'escola' },
+      {
+        "render": function (data, type, JsonResultRow, meta) {
+          return '<input type="hidden" name=ids[]" value="'+JsonResultRow.id+'" ><input  class="form-control-plaintext col-xs-12" type="text" name="qtd[]"" placeholder="Quantidade de tonners (Obrigatório)">';
+        }
+      }
+  ]
+  });
 });
 
 function validateForm() {
-  var enviados = document.forms["submit_form"]["enviados[]"].value;
+  var enviados = document.forms["submit_form"]["id"].value;
+  console.log(enviados);
+  var qtd = document.forms["submit_form"]["qtd"].value;
   var data_envio = document.forms["submit_form"]["data_envio"].value;
-  var quantidade = document.forms["submit_form"]["quantidade"].value;
   // $('#enviados option:selected').each(function() {
   //     alert($(this).val());
   // });
-  console.log(enviados.length);
-  if (enviados == "" || data_envio == "" || quantidade == "") {
-    alert("Os campos Modelos Enviados, Quantidade  e Data de envio são de preenchimento OBRIGATÓRIO !!!");
+  if (enviados == "" || data_envio == "") {
+    alert("Os campos Modelos Enviados e Data de envio são de preenchimento OBRIGATÓRIO !!!");
     document.getElementById('erro').innerHTML =   '<p style="background-color: lightgrey: ; border-left: 6px solid red; padding:2px;">Preencha os campos obrigatórios. Os campos obrigatórios possuem um * ao lado do nome.</p>';
     return false;
   }

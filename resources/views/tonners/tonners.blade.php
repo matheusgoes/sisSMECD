@@ -19,12 +19,13 @@
            <th>X</th>
            <th>Id</th>
            <th>Status</th>
-           <th>Quantidade</th>
            <th>Enviados</th>
+           <th>Quantidade</th>
            <th>Recebidos</th>
            <th>Entregues</th>
            <th>Data Envio</th>
            <th>Data Recebimento</th>
+           <th>Obs </th>
            <th>Ação</th>
        </tr>
    </thead>
@@ -33,12 +34,13 @@
            <th>X</th>
            <th>Id</th>
            <th>Status</th>
-           <th>Quantidade</th>
            <th>Enviados</th>
+           <th>Quantidade</th>
            <th>Recebidos</th>
            <th>Entregues</th>
            <th>Data Envio</th>
            <th>Data Recebimento</th>
+           <th>Obs </th>
            <th>Ação</th>
        </tr>
    </tfoot>
@@ -95,12 +97,13 @@
           },
           { data: 'id', name: 'id' },
           { data: 'status', name: 'status' },
-          { data: 'quantidade', name: 'quantidade' },
           { data: 'tonners_enviados', name: 'tonners_enviados' },
+          { data: 'qtd', name: 'qtd' },
           { data: 'tonners_recebidos', name: 'tonners_recebidos' },
           { data: 'tonners_entregues', name: 'tonners_entregues' },
           { data: 'data_envio', name: 'data_envio' },
           { data: 'data_entrega', name: 'data_entrega' },
+          { data: 'obs', name: 'obs' },
           {
             "render": function (data, type, JsonResultRow, meta) {
               return '<a class="btn btn-default" role="button" href="/ordens/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
