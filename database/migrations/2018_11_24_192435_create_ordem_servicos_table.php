@@ -22,7 +22,9 @@ class CreateOrdemServicosTable extends Migration
             $table->string('data_envio');
             $table->string('data_entrega');
             $table->string('obs');
-            $table->string('qtd');
+            $table->string('qtd_enviado');
+            $table->string('qtd_recebido');
+            $table->string('qtd_entregue');
             $table->timestamps();
         });
     }

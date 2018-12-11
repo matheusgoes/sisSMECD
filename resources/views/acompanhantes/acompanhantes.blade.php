@@ -10,7 +10,9 @@
   <h4>
     Acompanhantes Cadastrados
     <a style="float: right; margin-left: 10px;" class="btn btn-primary" role="button" onclick="print()">Imprimir</a>
-    <a style="float: right;" class="btn btn-info" role="button" href="/acompanhantes/cadastrar">Cadastrar</a>
+    @if (Auth::user()->hasRole("admin"))
+      <a style="float: right;" class="btn btn-info" role="button" href="/acompanhantes/cadastrar">Cadastrar</a>
+    @endif
   </h4>
   <br>
 
@@ -85,7 +87,7 @@ $(function () {
       { data: 'residencia', name: 'residencia' },
       {
         "render": function (data, type, JsonResultRow, meta) {
-          return '<a class="btn btn-default" role="button" href="/acompanhantes/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/acompanhantes/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
+          return '@if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/acompanhantes/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/acompanhantes/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
         }
       }
     ]

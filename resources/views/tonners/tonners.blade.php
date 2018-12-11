@@ -10,7 +10,9 @@
   <h4>
       Ordens de serviço
       <!-- <a style="float: right; margin-left: 10px;" class="btn btn-primary" role="button" onclick="submit()">Imprimir</a> -->
-      <a style="float: right;" class="btn btn-primary" role="button" href="/ordens/cadastrar">Cadastrar</a>
+      @if (Auth::user()->hasRole('admin'))
+        <a style="float: right;" class="btn btn-primary" role="button" href="/ordens/cadastrar">Cadastrar</a>
+      @endif
   </h4>
   <br>
    <table class="table table-bordered table-hover dataTable" id="ordens-table">
@@ -20,9 +22,11 @@
            <th>Id</th>
            <th>Status</th>
            <th>Enviados</th>
-           <th>Quantidade</th>
+           <th>Qtd</th>
            <th>Recebidos</th>
+           <th>Qtd</th>
            <th>Entregues</th>
+           <th>Qtd</th>
            <th>Data Envio</th>
            <th>Data Recebimento</th>
            <th>Obs </th>
@@ -35,9 +39,11 @@
            <th>Id</th>
            <th>Status</th>
            <th>Enviados</th>
-           <th>Quantidade</th>
+           <th>Qtd</th>
            <th>Recebidos</th>
+           <th>Qtd</th>
            <th>Entregues</th>
+           <th>Qtd</th>
            <th>Data Envio</th>
            <th>Data Recebimento</th>
            <th>Obs </th>
@@ -52,7 +58,9 @@
   <h4>
       Tonners
       <!-- <a style="float: right; margin-left: 10px;" class="btn btn-primary" role="button" onclick="submit()">Imprimir</a> -->
+      @if (Auth::user()->hasRole('admin'))
       <a style="float: right;" class="btn btn-primary" role="button" href="/tonners/cadastrar">Cadastrar</a>
+      @endif
   </h4>
   <br>
    <table class="table table-bordered table-hover dataTable" id="tonners-table">
@@ -62,7 +70,7 @@
            <th>Id</th>
            <th>Modelo</th>
            <th>Escola</th>
-           <th>Quantidade</th>
+           <th>Qtd</th>
            <th>Ação</th>
        </tr>
    </thead>
@@ -72,7 +80,7 @@
          <th>Id</th>
          <th>Modelo</th>
          <th>Escola</th>
-         <th>Quantidade</th>
+         <th>Qtd</th>
          <th>Ação</th>
        </tr>
    </tfoot>
@@ -98,15 +106,17 @@
           { data: 'id', name: 'id' },
           { data: 'status', name: 'status' },
           { data: 'tonners_enviados', name: 'tonners_enviados' },
-          { data: 'qtd', name: 'qtd' },
+          { data: 'qtd_enviado', name: 'qtd_enviado' },
           { data: 'tonners_recebidos', name: 'tonners_recebidos' },
+          { data: 'qtd_recebido', name: 'qtd_recebido' },
           { data: 'tonners_entregues', name: 'tonners_entregues' },
+          { data: 'qtd_entregue', name: 'qtd_entregue' },
           { data: 'data_envio', name: 'data_envio' },
           { data: 'data_entrega', name: 'data_entrega' },
           { data: 'obs', name: 'obs' },
           {
             "render": function (data, type, JsonResultRow, meta) {
-              return '<a class="btn btn-default" role="button" href="/ordens/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
+              return '@if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/ordens/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
             }
           }
       ]
@@ -128,7 +138,7 @@
           { data: 'quantidade', name: 'quantidade' },
           {
             "render": function (data, type, JsonResultRow, meta) {
-              return '<a class="btn btn-default" role="button" href="/tonners/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
+              return ' @if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/tonners/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
             }
           }
       ]

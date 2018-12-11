@@ -38,7 +38,7 @@ class TonnerController extends Controller
   }
 
   public function load(){
-      return datatables()->of(DB::table('tonners'))->toJson();
+      return datatables()->of(DB::table('tonners')->orderBy('id'))->toJson();
   }
 
   public function cadastrar()

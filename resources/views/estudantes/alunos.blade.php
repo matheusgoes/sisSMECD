@@ -11,7 +11,9 @@
   <h4>
     Alunos Cadastrados
     <a style="float: right; margin-left: 10px;" class="btn btn-primary" role="button" onclick="print()">Imprimir</a>
+    @if (Auth::user()->hasRole('admin'))
     <a style="float: right;" class="btn btn-info" role="button" href="/alunos/cadastrar">Cadastrar</a>
+    @endif
   </h4>
   <br>
   <table class="table table-bordered table-hover dataTable" id="alunos-table">
@@ -99,7 +101,7 @@ $(function () {
       { data: 'rota', name: 'rota' },
       {
         "render": function (data, type, JsonResultRow, meta) {
-          return '<a class="btn btn-default" role="button" href="/alunos/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/alunos/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a>';
+          return '@if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/alunos/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/alunos/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
         }
       }
     ]

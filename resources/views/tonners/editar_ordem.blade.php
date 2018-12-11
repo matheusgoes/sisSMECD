@@ -29,52 +29,123 @@
             <td> <br> </td>
          </tr>
          <tr>
-            <td><label for="enviados">Modelos enviados * </label></td>
-            <td>
-               <div class="form-group">
-                  <select name="enviados[]" id="enviados" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Selecionar tonners" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                     @foreach($tonners as $tonner)
-                     <option value="{{$tonner->id }}"}}>
-                        {{ $tonner->escola }} – {{ $tonner->modelo }}
-                     </option>
-                     @endforeach
-                  </select>
-               </div>
-            </td>
+           <td><label for="enviados">Modelos enviados * </label></td>
+           <td>
+             <div class="form-group">
+               <table class="table table-bordered table-hover dataTable" id="tonners-enviados">
+               <thead>
+                   <tr>
+                       <th>Modelo</th>
+                       <th>Escola</th>
+                       <th>Quantidade</th>
+                   </tr>
+               </thead>
+               <tbody>
+                  @for ($i = 0; $i < sizeOf($tonners); $i++)
+                   <tr>
+                      <td>{{ $tonners[$i]->modelo }}</td>
+                      <td>{{ $tonners[$i]->escola }}</td>
+                      <td><input type="hidden" name=ids_enviados[] value="{{ $tonners[$i]->id }}">
+                        @php ($qtd = 0) @endphp
+                        @for ($j = 0; $j < sizeOf($ids_enviados); $j++)
+                           @if ($tonners[$i]->id == $ids_enviados[$j])
+                              @php ($qtd = $qtd_enviado[$j] ) @endphp
+                           @endif
+                        @endfor
+
+                        @if ( $qtd != 0 )
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_enviados[]" placeholder="Quantidade de tonners (Obrigatório)" value="{{ $qtd }} ">
+                        @else
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_enviados[]" placeholder="Quantidade de tonners (Obrigatório)">
+                        @endif
+                      </td>
+                   </tr>
+                 @endfor
+               </tbody>
+               </table>
+             </div>
+           </td>
          </tr>
 
          <tr>
-            <td>
-               <label for="enviados">Tonners Recebidos </label>
-            </td>
-            <td>
-               <div class="form-group">
-                  <select name="recebidos[]" id="recebidos" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Selecionar tonners" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                     @foreach($enviados as $tonner)
-                     <option value="{{$tonner->id }}"}}>
-                        {{ $tonner->escola }} – {{ $tonner->modelo }}
-                     </option>
-                     @endforeach
-                  </select>
-               </div>
-            </td>
+           <td><label for="recebidos">Modelos recebidos * </label></td>
+           <td>
+             <div class="form-group">
+               <table class="table table-bordered table-hover dataTable" id="tonners-recebidos">
+               <thead>
+                   <tr>
+                       <th>Modelo</th>
+                       <th>Escola</th>
+                       <th>Quantidade</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   @for ($i = 0; $i < sizeOf($enviados); $i++)
+                    <tr>
+                       <td>{{ $enviados[$i]->modelo }}</td>
+                       <td>{{ $enviados[$i]->escola }}</td>
 
-         </tr>
+
+                       <td><input type="hidden" name=ids_recebidos[] value="{{ $enviados[$i]->id }}">
+                       @php ($qtd = 0) @endphp
+                       @for ($j = 0; $j < sizeOf($ids_recebidos); $j++)
+                          @if ($enviados[$i]->id == $ids_recebidos[$j])
+                             @php ($qtd = $qtd_recebido[$j] ) @endphp
+                          @endif
+                       @endfor
+
+                       @if ( $qtd != 0 )
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_recebidos[]" placeholder="Quantidade de tonners (Obrigatório)" value="{{ $qtd }}">
+                       @else
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_recebidos[]" placeholder="Quantidade de tonners (Obrigatório)">
+                       @endif
+
+                       </td>
+                    </tr>
+                   @endfor
+                </tbody>
+               </table>
+             </div>
+           </td>
+        </tr>
+        <hr>
          <tr>
-            <td>
-               <label for="enviados">Tonners Entregues </label>
-            </td>
-            <td>
-               <div class="form-group">
-                  <select name="entregues[]" id="entregues" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Selecionar tonners" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                     @foreach($enviados as $tonner)
-                     <option value="{{$tonner->id }}"}}>
-                        {{ $tonner->escola }} – {{ $tonner->modelo }}
-                     </option>
-                     @endforeach
-                  </select>
-               </div>
-            </td>
+           <td><label for="entregues">Modelos entregues * </label></td>
+           <td>
+             <div class="form-group">
+               <table class="table table-bordered table-hover dataTable" id="tonners-entregues">
+               <thead>
+                   <tr>
+                       <th>Modelo</th>
+                       <th>Escola</th>
+                       <th>Quantidade</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   @for ($i = 0; $i < sizeOf($recebidos); $i++)
+                    <tr>
+                       <td>{{ $recebidos[$i]->modelo }}</td>
+                       <td>{{ $recebidos[$i]->escola }}</td>
+                       <td><input type="hidden" name=ids_entregues[] value="{{ $recebidos[$i]->id }}">
+                         @php ($qtd = 0) @endphp
+                         @for ($j = 0; $j < sizeOf($ids_entregues); $j++)
+                            @if ($recebidos[$i]->id == $ids_entregues[$j])
+                               @php ($qtd = $qtd_entregue[$j] ) @endphp
+                            @endif
+                         @endfor
+
+                        @if ( $qtd != 0 )
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_entregues[]" placeholder="Quantidade de tonners (Obrigatório)" value="{{ $qtd }}">
+                       @else
+                           <input  class="form-control-plaintext col-xs-12" type="text" name="qtd_entregues[]" placeholder="Quantidade de tonners (Obrigatório)">
+                       @endif
+                       </td>
+                    </tr>
+                   @endfor
+                </tbody>
+               </table>
+             </div>
+           </td>
          </tr>
 
          <tr>
@@ -102,12 +173,8 @@
             <td> <br> </td>
          </tr>
          <tr>
-            <td><label for="quantidade">Quantidade de tonners *</label></td>
-            <td><input  class="form-control-plaintext col-xs-3" type="text" name=quantidade placeholder="Quantidade de tonners (Obrigatório)" value="{{ $ordem->quantidade }}"></td>
-         </tr>
-         <tr>
             <td><label for="obs">Observações *</label></td>
-            <td><input  class="form-control-plaintext col-xs-3" type="text" name=obs placeholder="Quantidade de tonners (Obrigatório)" value="{{ $ordem->obs }}"></td>
+            <td><input  class="form-control-plaintext col-xs-12" type="text" name=obs placeholder="Quantidade de tonners (Obrigatório)" value="{{ $ordem->obs }}"></td>
          </tr>
          <tr>
          <td> <br> </td>
@@ -119,38 +186,21 @@
       </table>
    </form>
 </div>
+
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
-$(document).ready(function(){
-   var select_enviados = $('#enviados').select2();
-   var select_recebidos = $('#recebidos').select2();
-   var select_entregues = $('#entregues').select2();
-   var select_status = $('#status').select2();
-   var itens = new Array();
-
-   select_status.val("{{ $ordem->status }}").trigger("change");
-
-   @foreach($ordem->tonners_enviados as $itens_enviados)
-   itens_enviados.push("{{ $itens_enviados }}");
-   @endforeach
-   select_enviados.val(itens_enviados).trigger("change");
-
-});
-
-function validateForm() {
-   var enviados = document.forms["submit_form"]["enviados[]"].value;
-   var data_envio = document.forms["submit_form"]["data-envio"].value;
-   var quantidade = document.forms["submit_form"]["quantidade"].value;
-   var obs = document.forms["submit_form"]["obs"].value;
-   // $('#enviados option:selected').each(function() {
-   //     alert($(this).val());
-   // });
-   console.log(enviados.length);
-   if (enviados == "" || data_envio == "" || quantidade == "" || obs == "") {
-      alert("Os campos Modelos Enviados, Quantidade e Data de envio são de preenchimento OBRIGATÓRIO !!!");
-      document.getElementById('erro').innerHTML =   '<p style="background-color: lightgrey: ; border-left: 6px solid red; padding:2px;">Preencha os campos obrigatórios. Os campos obrigatórios possuem um * ao lado do nome.</p>';
-      return false;
+   function validateForm() {
+     var enviados = document.forms["submit_form"]["id"].value;
+     var qtd = document.forms["submit_form"]["qtd"].value;
+     var data_envio = document.forms["submit_form"]["data_envio"].value;
+     // $('#enviados option:selected').each(function() {
+     //     alert($(this).val());
+     // });
+     if (enviados == "" || data_envio == "") {
+       alert("Os campos Modelos Enviados e Data de envio são de preenchimento OBRIGATÓRIO !!!");
+       document.getElementById('erro').innerHTML =   '<p style="background-color: lightgrey: ; border-left: 6px solid red; padding:2px;">Preencha os campos obrigatórios. Os campos obrigatórios possuem um * ao lado do nome.</p>';
+       return false;
+     }
    }
-}
 </script>
 @stop
