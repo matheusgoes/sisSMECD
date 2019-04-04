@@ -28,7 +28,7 @@ body{
 }
 
 .header{
-    background: lightyellow;
+    background: #f442d1;
     height: 40px;
     text-align: center;
     padding: 3px 0px 0px 0px;
@@ -39,7 +39,7 @@ body{
 .footer{
     padding: 10px 0px 0px 0px;
     text-align: center;
-    background: lightyellow;
+    background: #f442d1;
     height: 25px;
     vertical-align : bottom;
     display: block;
