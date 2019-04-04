@@ -87,7 +87,7 @@
    </table>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 
 </script>
   <script type="text/javascript">
@@ -96,7 +96,10 @@
       $('#ordens-table').DataTable({
         "processing": true,
           "serverSide": true,
-          "ajax": "/ordens/load",
+          "ajax": {
+            url: '/ordens/load',
+            type: 'GET'
+          },
           columns: [
           {
                "render": function (data, type, JsonResultRow, meta) {

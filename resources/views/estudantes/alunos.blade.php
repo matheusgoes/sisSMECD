@@ -55,9 +55,8 @@
 
 </div>
 
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </script>
 <script type="text/javascript">
 function print(){
@@ -71,13 +70,16 @@ function print(){
     window.location="/alunos/pdf2/"+ args;
   }
 }
-
+// "ajax": "{{action('AlunoController@load') }}",
 $(function () {
 
   $('#alunos-table').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "{{action('AlunoController@load') }}",
+    "ajax": {
+      url: '/alunos/load',
+      type: 'GET'
+    },
     columns: [
       {
         "render": function (data, type, JsonResultRow, meta) {

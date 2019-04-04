@@ -44,7 +44,7 @@
   </table>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 
 </script>
 <script type="text/javascript">
@@ -59,13 +59,16 @@ function print(){
     window.location="/voluntarios/pdf2/"+ args;
   }
 }
-
+//"ajax": "{{action('VoluntariosController@load') }}",
 $(function () {
 
   $('#voluntarios-table').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "{{action('VoluntariosController@load') }}",
+    "ajax": {
+      url: '/voluntarios/load',
+      type: 'GET'
+    },
     columns: [
       {
         "render": function (data, type, JsonResultRow, meta) {

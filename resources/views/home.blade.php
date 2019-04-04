@@ -134,7 +134,7 @@
     </table>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 
 </script>
 <script type="text/javascript">
@@ -154,9 +154,17 @@ function print_alunos(){
 $(function () {
 
     $('#alunos-table').DataTable({
+        "searchHighlight": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "{{action('AlunoController@load') }}",
+        "responsive": true,
+        "ajax": {
+            'headers': {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+           url: '/alunos/load',
+          "type": 'POST'
+        },
         columns: [
             {
                 "render": function (data, type, JsonResultRow, meta) {
@@ -198,9 +206,17 @@ $(function () {
         }
     }
     $('#acompanhantes-table').DataTable({
+        "searchHighlight": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "/acompanhantes/load",
+        "responsive": true,
+        "ajax": {
+            'headers': {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+           url: '/acompanhantes/load',
+          type: 'POST'
+        },
         columns: [
             {
                 "render": function (data, type, JsonResultRow, meta) {
@@ -238,9 +254,17 @@ $(function () {
         }
     }
     $('#voluntarios-table').DataTable({
+        "searchHighlight": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "/voluntarios/load",
+        "responsive": true,
+        "ajax": {
+            'headers': {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+          url: '/voluntarios/load',
+          type: 'POST'
+        },
         columns: [
             {
                 "render": function (data, type, JsonResultRow, meta) {

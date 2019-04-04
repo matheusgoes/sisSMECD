@@ -27,6 +27,7 @@ Route::get('/acompanhantes/editar/{id}', 'AcompanhanteController@editar')->name(
 Route::post('/acompanhantes/editar/{id}', 'AcompanhanteController@edit_submit')->name('acompanhante.editar');
 Route::get('/acompanhantes', 'AcompanhanteController@show')->name('Acompanhantes');
 Route::get('/acompanhantes/load', 'AcompanhanteController@load')->name('Acompanhantes.load');
+Route::post('/acompanhantes/load', 'AcompanhanteController@load')->name('Acompanhantes.load');
 Route::get('/acompanhantes/pdf', 'AcompanhanteController@generatePDF')->name('Acompanhantes.pdf');
 Route::get('/acompanhantes/pdf2/{ids}','AcompanhanteController@generatePDF2')->name('Acompanhantes.pdf');
 
@@ -37,6 +38,7 @@ Route::get('/alunos/editar/{id}', 'AlunoController@editar')->name('aluno.editar'
 Route::post('/alunos/editar/{id}', 'AlunoController@edit_submit')->name('aluno.editar');
 Route::get('/alunos', 'AlunoController@show')->name('Alunos');
 Route::get('/alunos/load', 'AlunoController@load')->name('alunos.load');
+Route::post('/alunos/load', 'AlunoController@load')->name('alunos.load');
 Route::get('/alunos/pdf','AlunoController@generatePDF')->name('alunos.pdf');
 Route::get('/alunos/pdf2/{ids}','AlunoController@generatePDF2')->name('alunos.pdf');
 
@@ -47,6 +49,7 @@ Route::get('/voluntarios/editar/{id}', 'VoluntariosController@editar')->name('Vo
 Route::post('/voluntarios/editar/{id}', 'VoluntariosController@edit_submit')->name('Voluntario.editar');
 Route::get('/voluntarios', 'VoluntariosController@show')->name('Voluntario');
 Route::get('/voluntarios/load', 'VoluntariosController@load')->name('Voluntario.load');
+Route::post('/voluntarios/load', 'VoluntariosController@load')->name('Voluntario.load');
 Route::get('/voluntarios/pdf', 'VoluntariosController@generatePDF')->name('Voluntario.pdf');
 Route::get('/voluntarios2/pdf', 'VoluntariosController@generatePDF2')->name('Voluntario.pdf');
 

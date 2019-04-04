@@ -46,7 +46,7 @@
   </table>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 
 </script>
 <script type="text/javascript">
@@ -61,13 +61,16 @@ function print(){
     window.location="/acompanhantes/pdf2/"+ args;
   }
 }
-
+//"ajax": "{{action('AcompanhanteController@load') }}",
 $(function () {
 
   $('#acompanhantes-table').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "{{action('AcompanhanteController@load') }}",
+    "ajax": {
+      url: '/acompanhantes/load',
+      type: 'GET'
+    },
     columns: [
       {
         "render": function (data, type, JsonResultRow, meta) {
