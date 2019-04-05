@@ -60,6 +60,7 @@ Route::get('/tonners/delete/{id}', 'TonnerController@delete')->name('Tonners.del
 Route::get('/tonners/editar/{id}', 'TonnerController@editar')->name('Tonners.editar');
 Route::post('/tonners/editar/{id}', 'TonnerController@edit_submit')->name('Tonners.editar');
 Route::get('/tonners/load', 'TonnerController@load')->name('Tonners.load');
+Route::post('/tonners/load', 'TonnerController@load')->name('Tonners.load');
 //Route::get('/tonners/pdf', 'TonnersController@generatePDF')->name('Tonners.pdf');
 //Route::get('/tonners/pdf2', 'TonnersController@generatePDF2')->name('Tonners.pdf');
 
@@ -69,6 +70,7 @@ Route::get('/ordens/delete/{id}', 'OrdemServicoController@delete')->name('Ordem.
 Route::get('/ordens/editar/{id}', 'OrdemServicoController@editar')->name('Ordem.editar');
 Route::post('/ordens/editar/{id}', 'OrdemServicoController@edit_submit')->name('Ordem.editar');
 Route::get('/ordens/load', 'OrdemServicoController@load')->name('Ordem.load');
+Route::post('/ordens/load', 'OrdemServicoController@load')->name('Ordem.load');
 Route::get('/ordens/load/tonners', 'OrdemServicoController@load_tonners')->name('Ordem.load_tonners');
 Route::get('/ordens/cadastrar_load', 'OrdemServicoController@cadastrar_load')->name('Ordem.cadastrar_load');
 //Route::get('/ordens/pdf', 'OrdensController@generatePDF')->name('Ordem.pdf');

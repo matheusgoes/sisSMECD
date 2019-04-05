@@ -63,11 +63,16 @@ function print(){
 $(function () {
 
   $('#voluntarios-table').DataTable({
+    "searchHighlight": true,
     "processing": true,
     "serverSide": true,
+    "responsive": true,
     "ajax": {
+        'headers': {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+       },
       url: '/voluntarios/load',
-      type: 'GET'
+      type: 'POST'
     },
     columns: [
       {

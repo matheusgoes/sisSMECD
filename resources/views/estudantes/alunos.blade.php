@@ -74,11 +74,16 @@ function print(){
 $(function () {
 
   $('#alunos-table').DataTable({
+    "searchHighlight": true,
     "processing": true,
     "serverSide": true,
+    "responsive": true,
     "ajax": {
-      url: '/alunos/load',
-      type: 'GET'
+        'headers': {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+       },
+       url: '/alunos/load',
+      "type": 'POST'
     },
     columns: [
       {

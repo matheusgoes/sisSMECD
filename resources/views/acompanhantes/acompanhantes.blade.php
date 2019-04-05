@@ -65,11 +65,16 @@ function print(){
 $(function () {
 
   $('#acompanhantes-table').DataTable({
+    "searchHighlight": true,
     "processing": true,
     "serverSide": true,
+    "responsive": true,
     "ajax": {
-      url: '/acompanhantes/load',
-      type: 'GET'
+        'headers': {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+       },
+       url: '/acompanhantes/load',
+      type: 'POST'
     },
     columns: [
       {

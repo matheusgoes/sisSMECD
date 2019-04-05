@@ -94,13 +94,18 @@
     $(function () {
 
       $('#ordens-table').DataTable({
+        "searchHighlight": true,
         "processing": true,
-          "serverSide": true,
-          "ajax": {
-            url: '/ordens/load',
-            type: 'GET'
-          },
-          columns: [
+        "serverSide": true,
+        "responsive": true,
+        "ajax": {
+            'headers': {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+          url: '/ordens/load',
+          type: 'POST'
+        },
+        columns: [
           {
                "render": function (data, type, JsonResultRow, meta) {
                   return ' <input type="checkbox" name="'+JsonResultRow.id+'" value="'+JsonResultRow.id+'"><br>';
@@ -126,24 +131,32 @@
       });
 
       $('#tonners-table').DataTable({
+        "searchHighlight": true,
         "processing": true,
-          "serverSide": true,
-          "ajax": "/tonners/load",
-          columns: [
-          {
-               "render": function (data, type, JsonResultRow, meta) {
-                  return ' <input type="checkbox" name="'+JsonResultRow.id+'" value="'+JsonResultRow.id+'"><br>';
-              }
-          },
-          { data: 'id', name: 'id' },
-          { data: 'modelo', name: 'modelo' },
-          { data: 'escola', name: 'escola' },
-          { data: 'quantidade', name: 'quantidade' },
-          {
-            "render": function (data, type, JsonResultRow, meta) {
-              return ' @if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/tonners/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
+        "serverSide": true,
+        "responsive": true,
+        "ajax": {
+            'headers': {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+          "url": "/tonners/load",
+          type: 'POST'
+        },
+        columns: [
+        {
+             "render": function (data, type, JsonResultRow, meta) {
+                return ' <input type="checkbox" name="'+JsonResultRow.id+'" value="'+JsonResultRow.id+'"><br>';
             }
+        },
+        { data: 'id', name: 'id' },
+        { data: 'modelo', name: 'modelo' },
+        { data: 'escola', name: 'escola' },
+        { data: 'quantidade', name: 'quantidade' },
+        {
+          "render": function (data, type, JsonResultRow, meta) {
+            return ' @if (Auth::user()->hasRole("admin")) <a class="btn btn-default" role="button" href="/tonners/editar/'+JsonResultRow.id+'"><i class="fa fa-edit"></i></a> <a class="btn btn-danger" role="button" href="/ordens/delete/'+JsonResultRow.id+'"><i class="fa fa-times"></i></a> @endif';
           }
+        }
       ]
       });
 
